@@ -51,8 +51,7 @@
 				WHERE $chartype LIKE '_$term%'
 			UNION
 			SELECT $chartype, pinyin, english, 3 as rank from entry
-				WHERE $chartype LIKE '__$term%'
-			ORDER BY LENGTH($chartype) ASC";
+				WHERE $chartype LIKE '__$term%'";
 
 
 	$contains_result = $dbh->query($sql);
