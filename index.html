@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+		<script>
+			var dictLookup = function() {
+				var term = $('#search').val();
+				var chartype = $('#chartype').val()
+
+				if (term !== '') {
+					console.log('not blank');
+					$.ajax({
+						url: 'query_dict.php',
+						type: "GET",
+						data: {
+							term: term,
+							chartype: chartype
+						},
+						success: function(html) {
+							$('#result').html(html);
+							}
+					});
+				}
+			}
+
+			$.ajaxSetup({
+				scriptCharset: "utf-8" ,
+				contentType: "application/json; charset=utf-8"
+			});
+
+			$(document).on("keyup", "#search", dictLookup);
+
+			$(document).ready(function() {
+				$('#search').focus();
+			});
+		</script>
+	</head>
+	<body>
+		<label class="radio inline">
+			<input type="radio" name="chartype" value="simp" checked="checked"/>
+			Simplified
+		</label>
+		<label class="radio inline">
+			<input type="radio" name="chartype" value="trad"/> Traditional
+		</label>
+		<br/>
+		<textarea class="textarea" id="search"></textarea>
+			<!-- <button id="submit-search">Go</button> -->
+
+
+		<div id="result"></div>
+	</body>
+</html>
