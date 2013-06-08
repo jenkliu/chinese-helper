@@ -47,4 +47,12 @@
         $word = str_replace($vowels, $pinyin[$tone], $word);
         return $word;
     }
+
+    function highlight($string, $word)
+     {
+        $string = str_ireplace($word, '<span class="highlight">'.$word.'</span>', $string);
+
+        /*** return the highlighted string ***/
+        return $string;
+     }
 ?>

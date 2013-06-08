@@ -1,6 +1,6 @@
 <?php
 	include 'config_db.php';
-	include 'pinyin_accents.php';
+	include 'helpers.php';
 
 	//debugger
 	include 'ChromePhp.php';
@@ -9,12 +9,10 @@
 
 	$term = $_GET['term'];
 	$chartype = $_GET['chartype'];
-
+	ChromePhp::log($chartype);
+	ChromePhp::log($term);
 	$dbh->query("SET NAMES utf8");
 
-	// $exact = $dbh->query("SELECT *
-	// 						FROM `entry`
-	// 						WHERE ")
 
 // **using prepare statements and variables
 // 	$sql = "SELECT *
@@ -37,28 +35,47 @@
 //     ChromePhp::log($this->pack('dbError', $e->getMessage()));
 // }
 
-	// using direct query
 	$sql = "SELECT *
-				FROM  `entry`
-				WHERE  `traditional` LIKE  '%$term%'
-				OR `simplified` LIKE '%$term%'
-				OR `pinyin` LIKE '$term'";
+				FROM `entry`
+				WHERE `traditional` = '$term'
+				OR `simplified` = '$term'";
 
-	$result = $dbh->query($sql);
+	$exact = $dbh->query($sql)->fetch();
+
+	// using direct query
+	// consider doing separate queries for positioning, each ordered by length
+	$sql = "SELECT $chartype, pinyin, english, 1 as rank from entry
+				WHERE $chartype LIKE '$term%'
+			UNION
+			SELECT $chartype, pinyin, english, 2 as rank from entry
+				WHERE $chartype LIKE '_$term%'
+			UNION
+			SELECT $chartype, pinyin, english, 3 as rank from entry
+				WHERE $chartype LIKE '__$term%'
+			ORDER BY LENGTH($chartype) ASC";
+
+
+	$contains_result = $dbh->query($sql);
 
 
 ?>
+<?php if($exact) : ?>
+	<div class="well">
+		<div class="primary result">
+			<?php echo $exact[0]; ?>
+		</div>
+		<br /><?php echo pinyin_addaccents($exact['pinyin']); ?>
+		<br /><?php echo $exact['english']; ?>
+	</div>
+<?php endif ?>
 
-<?php if($result) : ?>
+
+<?php if($contains_result) : ?>
 	<table class="table">
-		<?php foreach(($result) as $row) : ?>
+		<?php foreach(($contains_result) as $row) : ?>
 			<tr>
 				<td>
-					<?php if ($chartype == "trad") : ?>
-						<?php echo $row['traditional']; ?>
-					<?php else : ?>
-						<?php echo $row['simplified']; ?>
-					<?php endif ?>
+					<?php echo highlight($row[0], $term); ?>
 					<br/>
 					<span class="pinyin">
 						<?php echo pinyin_addaccents($row['pinyin']); ?>
