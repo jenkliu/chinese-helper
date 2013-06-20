@@ -20,6 +20,11 @@
 
 	$exact = $dbh->query($sql);
 
+	//TODO: fix this!
+	$exact_count = $dbh->query("SELECT COUNT(*)
+								FROM `entry`
+								WHERE `traditional` = '$term'
+								OR `simplified` = '$term'")->fetchColumn();
 	// using direct query
 	$sql = "SELECT $chartype, pinyin, english from entry
 				WHERE $chartype LIKE '$term%'
@@ -36,36 +41,35 @@
 ?>
 
 
+	<table class="terms">
 
-<?php if($exact) : ?>
-	<div class="well">
-			<div class="primary result">
-				<div class="row">
-					<div class="span2">
-						<span class="char main"><?php echo $term; ?></span>
-					</div>
-					<div class="span9">
-						<?php foreach(($exact) as $row) : ?>
-							<span class="pinyin"><?php echo pinyin_addaccents($row['pinyin']); ?></span>
-							- <span class="english"><?php echo $row['english']; ?></span><br/>
-						<?php endforeach ?>
-					</div>
-				</div>
-			</div>
-	</div>
-<?php endif ?>
+		<?php if($exact) : ?>
+			<tr class="primary result">
+				<td rowspan="<?php echo $exact_count ?>">
+					<span class="char main"><?php echo $term; ?></span>
+				</td>
+				<?php $row = $exact->fetch(); ?>
+				<td>
+					<span class="pinyin"><?php echo pinyin_addaccents($row['pinyin']); ?></span>
+				</td>
+				<td>
+					<span class="english"><?php echo $row['english']; ?></span><br/>
+				</td>
+			</tr>
+			<?php while ($row = $exact->fetch()) : ?>
+				<tr class="primary result">
+					<td>
+						<span class="pinyin"><?php echo pinyin_addaccents($row['pinyin']); ?></span>
+					</td>
+					<td>
+						<span class="english"><?php echo $row['english']; ?></span><br/>
+					</td>
+				</tr>
+			<?php endwhile ?>
+		<?php endif ?>
 
 
-<ul class="nav nav-tabs">
-	<li><a href="#first-char" data-toggle="tab">first</a></li>
-	<li><a href="#contains-char" data-toggle="tab">contains</a></li>
-	<li><a href="#all" data-toggle="tab">all</a></li>
-</ul>
-
-<div class="tab-content">
-	<div class="tab-pane active" id="first-char">
 		<?php if($first_result) : ?>
-			<table class="terms">
 				<?php foreach(($first_result) as $row) : ?>
 					<tr>
 						<td>
@@ -79,27 +83,9 @@
 						<td><?php echo $row['english']; ?></td>
 					</tr>
 				<?php endforeach ?>
-			</table>
 		<?php endif ?>
-	</div>
-	<div class="tab-pane" id="contains-char">
-		<?php if($contains_result) : ?>
-			<table class="terms table">
-				<?php foreach(($contains_result) as $row) : ?>
-					<tr>
-						<td>
-							<span class="char"><?php echo highlight($row[0], $term); ?></span>
-						</td>
-						<td>
-							<span class="pinyin">
-								<?php echo pinyin_addaccents($row['pinyin']); ?>
-							</span>
-						</td>
-						<td><?php echo $row['english']; ?></td>
-					</tr>
-				<?php endforeach ?>
-			</table>
-		<?php endif ?>
+	</table>
+
 	</div>
 	<div class="tab-pane" id="all">
 	</div>
