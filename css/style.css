@@ -1,0 +1,31 @@
+.highlight {
+  background-color: #ff0;
+}
+.prompt {
+  font-size: 24px;
+}
+#term,
+ {
+  font-size: 24px;
+}
+.primary.result .char {
+  font-size: 42px;
+}
+.primary.result .pinyin {
+  font-size: 14px;
+}
+.primary.result .english {
+  font-size: 14px;
+}
+table.terms {
+  line-height: 24px;
+}
+table.terms .char {
+  font-size: 24px;
+}
+table.terms tr {
+  border-bottom: 1px solid;
+}
+table.terms td {
+  padding: 6px 10px 6px;
+}

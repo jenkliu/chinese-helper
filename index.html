@@ -5,29 +5,36 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
 
-		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<style>
-			.highlight {
-				background-color: #FFFF00;
-			}
-		</style>
-
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+		<link href="css/style.css" rel="stylesheet" />
 	</head>
 	<body>
-		<form id="search">
-			<br/>
-			<textarea class="textarea" name="term" id="term"></textarea>
-				<!-- <button id="submit-search">Go</button> -->
-			<br/>
-			<label class="radio inline">
-				<input type="radio" name="chartype" value="simplified" checked="checked"/>
-				Simplified
-			</label>
-			<label class="radio inline">
-				<input type="radio" name="chartype" value="traditional"/> Traditional
-			</label>
-		</form>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span2">
 
-		<div id="result"></div>
+					<form id="search">
+						<label>
+							<!-- <span class="prompt">Enter a character:</span> -->
+							<textarea name="term" id="term" placeholder="Enter a term..."></textarea>
+							<!-- <button id="submit-search">Go</button> -->
+						<br/>
+
+						<label class="radio inline">
+							<input type="radio" name="chartype" value="simplified" checked="checked"/>
+							Simplified
+						</label>
+						<label class="radio inline">
+							<input type="radio" name="chartype" value="traditional"/> Traditional
+						</label>
+					</form>
+				</div>
+
+				<div class="span10">
+					<div id="result"></div>
+				</div>
+
+			</div>
+		</div>
 	</body>
 </html>
