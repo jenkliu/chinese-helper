@@ -1,18 +1,45 @@
+.main {
+  margin-top: 20px;
+}
 .highlight {
   background-color: #ff0;
 }
 .prompt {
   font-size: 24px;
 }
-#term,
- {
+#term {
   font-size: 24px;
+  line-height: 32px;
+}
+.options {
+  display: none;
+}
+.category {
+  line-height: 24px;
+  display: inline-block;
+  margin: 12px 0 6px;
+  font-weight: bold;
+}
+.extra-controls {
+  display: block;
+  float: right;
 }
 .primary.result {
   background-color: #7dd4ff;
 }
+.primary.resulttr {
+  border-bottom: 0;
+}
+.primary.result:first-child {
+  border-top: 1px solid;
+}
+.primary.result:last-child {
+  border-bottom: 1px solid;
+}
 .primary.result .char {
   font-size: 42px;
+  line-height: 42px;
+  text-align: center;
 }
 .primary.result .pinyin {
   font-size: 14px;
@@ -27,7 +54,7 @@ table.terms .char {
   font-size: 24px;
 }
 table.terms tr {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #ccc;
 }
 table.terms td {
   padding: 6px 10px 6px;

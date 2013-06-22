@@ -24,5 +24,5 @@ $(document).on("keyup", "#term", dictLookup);
 $(document).on("change", "input[name='chartype']", dictLookup);
 
 $(document).ready(function() {
-	$('#search').focus();
+	$('#term').focus();
 });

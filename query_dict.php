@@ -20,12 +20,11 @@
 
 	$exact = $dbh->query($sql);
 
-	//TODO: fix this!
 	$exact_count = $dbh->query("SELECT COUNT(*)
 								FROM `entry`
 								WHERE `traditional` = '$term'
 								OR `simplified` = '$term'")->fetchColumn();
-	// using direct query
+
 	$sql = "SELECT $chartype, pinyin, english from entry
 				WHERE $chartype LIKE '$term%'
 				ORDER BY LENGTH($chartype) ASC";
@@ -71,6 +70,21 @@
 
 		<?php if($first_result) : ?>
 				<?php foreach(($first_result) as $row) : ?>
+					<tr>
+						<td>
+							<span class="char"><?php echo highlight($row[0], $term); ?></span>
+						</td>
+						<td>
+							<span class="pinyin">
+								<?php echo pinyin_addaccents($row['pinyin']); ?>
+							</span>
+						</td>
+						<td><?php echo $row['english']; ?></td>
+					</tr>
+				<?php endforeach ?>
+		<?php endif ?>
+		<?php if($contains_result) : ?>
+				<?php foreach(($contains_result) as $row) : ?>
 					<tr>
 						<td>
 							<span class="char"><?php echo highlight($row[0], $term); ?></span>

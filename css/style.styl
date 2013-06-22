@@ -1,3 +1,6 @@
+
+.main
+	margin-top 20px
 .highlight
 	background-color #FFFF00
 
@@ -5,14 +8,37 @@
 	font-size 24px
 
 #term
-//	width 30px
-//	height 30px
 	font-size 24px
+	line-height 32px
+
+.options
+	display none
+
+.category
+	line-height 24px
+	display inline-block
+	margin 12px 0 6px
+	font-weight bold
+
+.extra-controls
+	display block
+	float right
 
 .primary.result
 	background-color #7DD4FF
+	&tr
+		border-bottom 0
+
+	&:first-child
+		border-top 1px solid
+
+	&:last-child
+		border-bottom 1px solid
+
 	.char
 		font-size 42px
+		line-height 42px
+		text-align center
 
 	.pinyin
 		font-size 14px
@@ -27,7 +53,7 @@ table.terms
 		font-size 24px
 
 	tr
-		border-bottom 1px solid
+		border-bottom 1px solid #ccc
 
 	td
 		padding 6px 10px 6px
