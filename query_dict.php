@@ -44,7 +44,7 @@
 
 	<table class="terms">
 
-		<?php if($exact) : ?>
+		<?php if($exact_count > 0) : ?>
 			<tr class="primary result">
 				<?php $row = $exact->fetch(); ?>
 				<td rowspan="<?php echo $exact_count ?>">
