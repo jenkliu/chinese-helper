@@ -25,8 +25,10 @@
 								WHERE `traditional` = '$term'
 								OR `simplified` = '$term'")->fetchColumn();
 
+	$as_first = $term.'_%';
+
 	$sql = "SELECT $chartype, pinyin, english from entry
-				WHERE $chartype LIKE '$term%'
+				WHERE $chartype LIKE '$as_first'
 				ORDER BY LENGTH($chartype) ASC";
 
 	$first_result = $dbh->query($sql);
@@ -44,10 +46,10 @@
 
 		<?php if($exact) : ?>
 			<tr class="primary result">
-				<td rowspan="<?php echo $exact_count ?>">
-					<span class="char main"><?php echo $term; ?></span>
-				</td>
 				<?php $row = $exact->fetch(); ?>
+				<td rowspan="<?php echo $exact_count ?>">
+					<span class="char main"><?php echo $row[$chartype]; ?></span>
+				</td>
 				<td>
 					<span class="pinyin"><?php echo pinyin_addaccents($row['pinyin']); ?></span>
 				</td>

@@ -11,63 +11,55 @@
 	<body>
 		<div class="main container-fluid">
 			<div class="row-fluid">
-				<div class="span3">
+				<div class="span12">
+					<form class="search" id="search">
 
-					<div class="well">
-						<h1>Chinese Character Search</h1>
-						<form class="search" id="search">
+							<input name="term" id="term" placeholder="Search any Chinese character..." />
+							<!-- <button id="submit-search">Go</button> -->
 
-								<input name="term" id="term" class="input-large search-query" placeholder="在这里打汉子" />
-								<!-- <button id="submit-search">Go</button> -->
-							<br/><br/>
+						<div class="options">
+							<!-- I think there's an issue here -->
+							<select name="chartype">
+								<option value="simplified">Simplified</option>
+								<option value="traditional">Traditional</option>
+							</select>
 
-							<div class="options">
-								<!-- I think there's an issue here -->
-								<select name="chartype">
-									<option value="simplified">Simplified</option>
-									<option value="traditional">Traditional</option>
-								</select>
+							<span class="category">Character Position</span>
 
-								<span class="category">Character Position</span>
+							<label class="checkbox">
+								<input type="checkbox" value="first">First
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" value="contains">Contains
+							</label>
 
-								<label class="checkbox">
-									<input type="checkbox" value="first">First
-								</label>
-								<label class="checkbox">
-									<input type="checkbox" value="contains">Contains
-								</label>
+							<span class="extra-controls">
+								<button class="btn-mini btn">All</button>
+								<button class="btn-mini btn">None</button>
+							</span>
 
-								<span class="extra-controls">
-									<button class="btn-mini btn">All</button>
-									<button class="btn-mini btn">None</button>
-								</span>
+							<span class="category">Term length</span>
+							<label class="checkbox">
+								<input type="checkbox" value="2">2
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" value="3">3
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" value="4">4
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" value="5+">5+
+							</label>
 
-								<span class="category">Term length</span>
-								<label class="checkbox">
-									<input type="checkbox" value="2">2
-								</label>
-								<label class="checkbox">
-									<input type="checkbox" value="3">3
-								</label>
-								<label class="checkbox">
-									<input type="checkbox" value="4">4
-								</label>
-								<label class="checkbox">
-									<input type="checkbox" value="5+">5+
-								</label>
+							<span class="extra-controls">
+								<button class="btn-mini btn">All</button>
+								<button class="btn-mini btn">None</button>
+							</span>
+						</div>
+					</form>
 
-								<span class="extra-controls">
-									<button class="btn-mini btn">All</button>
-									<button class="btn-mini btn">None</button>
-								</span>
-							</div>
-						</form>
-					</div>
-				</div>
-
-				<div class="span9">
 					<div id="result"></div>
-				</div>
 
 			</div>
 		</div>

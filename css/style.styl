@@ -10,6 +10,11 @@
 #term
 	font-size 24px
 	line-height 32px
+	padding 6px 10px
+	width 100%
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 
 .options
 	display none
@@ -24,16 +29,15 @@
 	display block
 	float right
 
-.primary.result
+tr.primary.result
 	background-color #7DD4FF
-	&tr
-		border-bottom 0
+	border-bottom 0
 
 	&:first-child
 		border-top 1px solid
 
-	&:last-child
-		border-bottom 1px solid
+	&:last-of-type
+		border-bottom 1px solid ＃000
 
 	.char
 		font-size 42px

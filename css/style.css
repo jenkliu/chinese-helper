@@ -10,6 +10,11 @@
 #term {
   font-size: 24px;
   line-height: 32px;
+  padding: 6px 10px;
+  width: 100%;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
 }
 .options {
   display: none;
@@ -24,27 +29,25 @@
   display: block;
   float: right;
 }
-.primary.result {
+tr.primary.result {
   background-color: #7dd4ff;
-}
-.primary.resulttr {
   border-bottom: 0;
 }
-.primary.result:first-child {
+tr.primary.result:first-child {
   border-top: 1px solid;
 }
-.primary.result:last-child {
+tr.primary.result:last-child {
   border-bottom: 1px solid;
 }
-.primary.result .char {
+tr.primary.result .char {
   font-size: 42px;
   line-height: 42px;
   text-align: center;
 }
-.primary.result .pinyin {
+tr.primary.result .pinyin {
   font-size: 14px;
 }
-.primary.result .english {
+tr.primary.result .english {
   font-size: 14px;
 }
 table.terms {
